@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Todo from "./components/Todo";
 import Counter from "./components/Todo/Counter";
 
@@ -15,10 +15,13 @@ const myTodoItems = [
 ];
 
 const App: React.FC = () => {
+  const [state, setState] = useState<boolean>(true);
+
   return (
     <div>
       <Todo items={myTodoItems} />
-      <Counter />
+      <button onClick={() => setState(!state)}>Toggle Counter</button>
+      {state ? <Counter /> : ""}
     </div>
   );
 };

@@ -1,10 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
 
 const Counter: React.FC = () => {
   const [counter, setCounter] = useState<number>(0);
 
-  console.log(counter);
+  useEffect(() => {
+    console.log("Counter component mounted");
+
+    return () => {
+      console.log("Counter component unmounted");
+    };
+  }, []);
+  useEffect(() => {
+    console.log("Counter component updated", counter);
+
+    return () => {
+      console.log("Counter useEffect Return", counter);
+    };
+  }, [counter]);
 
   const handleIncrement = () => {
     setCounter(counter + 1);
