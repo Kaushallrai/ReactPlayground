@@ -1,20 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
-interface TodoItem {
-  completed: boolean;
+interface TodoItems {
+  userID: number;
   id: number;
   title: string;
-  userId: number;
+  completed: boolean;
 }
 
 function App() {
-  const [todos, setTodos] = useState<TodoItem[]>([]);
+  const [todos, setTodos] = useState<TodoItems[]>([]);
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/todos")
-      .then((e) => e.json())
-      .then((e) => setTodos(e as TodoItem[]));
-  });
+    axios.get("https://jsonplaceholder.typicode.com/todos").then((res) => {
+      setTodos(res.data);
+    });
+  }, []);
+
   return (
     <div className="App">
       {todos.map((todo) => (
@@ -23,5 +25,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
