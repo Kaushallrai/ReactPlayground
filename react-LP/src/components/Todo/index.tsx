@@ -1,15 +1,23 @@
 import React from "react";
-import TodoItem from "./TodoItem";
 import "./style.css";
+import TodoItem from "./TodoItem";
 
-const Todo: React.FC = () => {
+interface ITodoItems {
+  id: number;
+  title: string;
+}
+
+interface TodoProps {
+  items: ITodoItems[];
+}
+
+const Todo: React.FC<TodoProps> = (props) => {
   return (
     <div className="todo-container">
       <ol>
-        <TodoItem />
-        <TodoItem />
-        <TodoItem />
-        <TodoItem />
+        {props.items.map((item) => (
+          <TodoItem title={item.title} />
+        ))}
       </ol>
     </div>
   );
