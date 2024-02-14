@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 interface TodoItems {
-  userID: number;
+  userId: number;
   id: number;
   title: string;
   completed: boolean;
@@ -10,7 +10,6 @@ interface TodoItems {
 
 function App() {
   const [todos, setTodos] = useState<TodoItems[]>([]);
-
   useEffect(() => {
     axios.get("https://jsonplaceholder.typicode.com/todos").then((res) => {
       setTodos(res.data);
@@ -25,4 +24,5 @@ function App() {
     </div>
   );
 }
+
 export default App;
