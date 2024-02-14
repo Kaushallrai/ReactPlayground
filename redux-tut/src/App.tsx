@@ -1,4 +1,3 @@
-import React from "react";
 import { useAppDispatch, useAppSelector } from "./redux/hooks";
 import { increment, decrement } from "./redux/slices/counter";
 import MyComp from "./MyComp";
